@@ -1,11 +1,12 @@
 import RegistrationForm from "../registrationForm";
 
+let reg: RegistrationForm;
 
 describe("Test registration form", () => {
     beforeAll(() => {
-        let reg = new RegistrationForm("", "", "", 0);
+        reg = new RegistrationForm("", "", "", 0);
     });
     beforeEach(() => {
-        
+        reg.clean();
     })
 });

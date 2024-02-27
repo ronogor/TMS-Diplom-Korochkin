@@ -97,6 +97,15 @@ export default class RegistrationForm {
     public get checkRegistrated(): boolean{
         return this.registered;
     }
+
+    public clean(): void {
+        this.email = "";
+        this.password = "";
+        this.username = "";
+        this.age = 0;
+        this.termsAgreement = false;
+        this.registered = false;
+    }
 }
 const reg = new RegistrationForm("", "", "", 0);
 reg.setEmail("asas@dss.dsdsdsd.qw");
@@ -104,5 +113,6 @@ reg.setPassword("qweRt123EW");
 reg.setUsername("ronogor");
 reg.setAge(26);
 reg.agreeWithTerms();
+reg.clean()
 console.log(reg.register());
 console.log(reg.checkRegistrated);
