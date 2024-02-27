@@ -73,13 +73,23 @@ export default class RegistrationForm {
             errorMessage += Errors.INVALIDTERMSAGREEMENT + "\n";
         }
         if(errorMessage){
-            return errorMessage;
+            return Errors.INVALIDREGISTRATION + errorMessage;
         } else {
             this.registered = true;
-            return "You have successfully registered";
+            return SuccessMessages.SUCCESSREGISTRATION;
         }
     }
-    public get checkemail(): string{
+
+    public clean(): void {
+        this.email = "";
+        this.password = "";
+        this.username = "";
+        this.age = 0;
+        this.termsAgreement = false;
+        this.registered = false;
+    }
+
+    public get checkEmail(): string{
         return this.email;
     }
     public get checkPassword(): string{
@@ -97,22 +107,13 @@ export default class RegistrationForm {
     public get checkRegistrated(): boolean{
         return this.registered;
     }
-
-    public clean(): void {
-        this.email = "";
-        this.password = "";
-        this.username = "";
-        this.age = 0;
-        this.termsAgreement = false;
-        this.registered = false;
-    }
 }
 const reg = new RegistrationForm("", "", "", 0);
-reg.setEmail("asas@dss.dsdsdsd.qw");
+reg.setEmail("ronogor228@gmail.com");
 reg.setPassword("qweRt123EW");
-reg.setUsername("ronogor");
+reg.setUsername("w");
 reg.setAge(26);
 reg.agreeWithTerms();
-reg.clean()
+// reg.clean();
 console.log(reg.register());
 console.log(reg.checkRegistrated);
