@@ -1,6 +1,8 @@
 import { Errors, SuccessMessages } from "./constants";
 
 export default class RegistrationForm {
+    private adminPass = "Newpassw0rd@dmin";
+
     constructor(
         private email: string,
         private password: string, 
@@ -66,11 +68,11 @@ export default class RegistrationForm {
             try {
                 fun.call(this, param);
             } catch (error: any) {
-                errorMessage += error.message + "\n";
+                errorMessage += error.message;
             }
         });
         if(!this.termsAgreement){
-            errorMessage += Errors.INVALIDTERMSAGREEMENT + "\n";
+            errorMessage += Errors.INVALIDTERMSAGREEMENT;
         }
         if(errorMessage){
             return Errors.INVALIDREGISTRATION + errorMessage;
@@ -89,11 +91,16 @@ export default class RegistrationForm {
         this.registered = false;
     }
 
+    public  checkPassword(adminPass: string): string{
+        if(this.adminPass === adminPass){
+            return this.password;
+        } else {
+            throw new Error(Errors.WRONGADMINPASS);
+        }
+    }
+
     public get checkEmail(): string{
         return this.email;
-    }
-    public get checkPassword(): string{
-        return this.password;
     }
     public get checkUsername(): string{
         return this.username;

@@ -2,6 +2,10 @@ import RegistrationForm from "../registrationForm";
 
 export let userForRegistration = new RegistrationForm("", "", "", 0);
 
+export const adminPassword = "Newpassw0rd@dmin";
+
+export const wrongAdminPassword = "hackingAttempt";
+
 export const correctEmail = new Map <string, string>([
     ["correct email", "ronogor228@gmail.com"],
     ["correct email with special symbol", "rono_-gh%.H@yandex.ru"],

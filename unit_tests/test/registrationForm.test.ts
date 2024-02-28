@@ -1,4 +1,4 @@
-import { userForRegistration, correctEmail, unCorrectEmail, correctPassword, unCorrectPassword, correctUsername, unCorrectUsername, correctAge, unCorrectAge, dataForTestRegister } from "./testData";
+import { userForRegistration, correctEmail, unCorrectEmail, correctPassword, unCorrectPassword, correctUsername, unCorrectUsername, correctAge, unCorrectAge, dataForTestRegister, adminPassword, wrongAdminPassword } from "./testData";
 import { Errors, SuccessMessages } from "../constants";
 
 
@@ -22,7 +22,7 @@ describe("Test class RegistrationForm", () => {
     correctPassword.forEach((password, description) => {
         test(`Positive test: input ${description}`, () => {
             userForRegistration.setPassword(password);
-            expect(userForRegistration.checkPassword).toBe(password);
+            expect(userForRegistration.checkPassword(adminPassword)).toBe(password);
         });
     });
 
@@ -31,6 +31,10 @@ describe("Test class RegistrationForm", () => {
             expect(() => userForRegistration.setPassword(badPassword)).toThrow(Errors.INVALIDPASSWORD);
         });
     });
+
+    test("Negative test: input wrong admin password for get user password", () => {
+        expect(() => userForRegistration.checkPassword(wrongAdminPassword)).toThrow(Errors.WRONGADMINPASS);
+    })
 
     test(`Positive test: input correct username`, () => {
         userForRegistration.setUsername(correctUsername);
@@ -80,8 +84,7 @@ describe("Test class RegistrationForm", () => {
         userForRegistration.setAge(dataForTestRegister.AGE);
         userForRegistration.agreeWithTerms();
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDEMAIL);
-        expect(registretedUser).toMatch(Errors.INVALIDREGISTRATION);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDEMAIL);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
@@ -91,8 +94,7 @@ describe("Test class RegistrationForm", () => {
         userForRegistration.setAge(dataForTestRegister.AGE);
         userForRegistration.agreeWithTerms();
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDPASSWORD);
-        expect(registretedUser).toMatch(Errors.INVALIDREGISTRATION);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDPASSWORD);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
@@ -102,8 +104,7 @@ describe("Test class RegistrationForm", () => {
         userForRegistration.setAge(dataForTestRegister.AGE);
         userForRegistration.agreeWithTerms();
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDUSERNAME);
-        expect(registretedUser).toMatch(Errors.INVALIDREGISTRATION);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDUSERNAME);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
@@ -113,8 +114,7 @@ describe("Test class RegistrationForm", () => {
         userForRegistration.setUsername(dataForTestRegister.USERNAME);
         userForRegistration.agreeWithTerms();
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDAGE);
-        expect(registretedUser).toMatch(Errors.INVALIDREGISTRATION);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDAGE);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
     
@@ -124,18 +124,13 @@ describe("Test class RegistrationForm", () => {
         userForRegistration.setUsername(dataForTestRegister.USERNAME);
         userForRegistration.setAge(dataForTestRegister.AGE);
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDTERMSAGREEMENT);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDTERMSAGREEMENT);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration - all fields are not filled in", () => {
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toMatch(Errors.INVALIDEMAIL);
-        expect(registretedUser).toMatch(Errors.INVALIDPASSWORD);
-        expect(registretedUser).toMatch(Errors.INVALIDUSERNAME);
-        expect(registretedUser).toMatch(Errors.INVALIDAGE);
-        expect(registretedUser).toMatch(Errors.INVALIDTERMSAGREEMENT);
-        expect(registretedUser).toMatch(Errors.INVALIDREGISTRATION);
+        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDEMAIL + Errors.INVALIDPASSWORD  + Errors.INVALIDUSERNAME + Errors.INVALIDAGE + Errors.INVALIDTERMSAGREEMENT);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 });
