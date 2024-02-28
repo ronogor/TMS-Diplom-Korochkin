@@ -106,9 +106,7 @@ export default class RegistrationForm {
             if (agreementWithTerms) {
                 this.agreeWithTerms();
             }
-        } catch (error) {
-            error;
-        }
+        } catch (error) {}
     }
 
     public clean(): void {

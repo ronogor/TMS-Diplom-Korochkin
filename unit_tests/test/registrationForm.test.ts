@@ -48,10 +48,12 @@ describe("Test class RegistrationForm", () => {
         expect(() => userForRegistration.checkPassword(wrongAdminPassword)).toThrow(Errors.WRONGADMINPASS);
     });
 
-    test(`Positive test: input correct username`, () => {
-        userForRegistration.setUsername(correctUsername);
-        expect(userForRegistration.checkUsername).toBe(correctUsername);
-    });
+    correctUsername.forEach((username, description) => {
+        test(`Positive test: input ${description}`, () => {
+            userForRegistration.setUsername(username);
+            expect(userForRegistration.checkUsername).toBe(username);
+        });
+    })
 
     test(`Negative test: input: uncorrect username`, () => {
         expect(() => userForRegistration.setUsername(unCorrectUsername)).toThrow(Errors.INVALIDUSERNAME);

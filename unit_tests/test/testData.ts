@@ -8,8 +8,9 @@ export const wrongAdminPassword = "hackingAttempt";
 
 export const correctEmail = new Map<string, string>([
     ["correct email", "ronogor228@gmail.com"],
-    ["correct email with special symbol", "rono_-gh%.H@yandex.ru"],
+    ["correct email with special symbol", "ronogh%H@yandex.ru"],
     ["correct email with not one dot after @", "ronogor228@crs.devzone.com"],
+    ["correct email with capital letter at the beginning email", "Romogor@qj.ru"]
 ]);
 
 export const unCorrectEmail = new Map<string, string>([
@@ -20,7 +21,8 @@ export const unCorrectEmail = new Map<string, string>([
 
 export const correctPassword = new Map<string, string>([
     ["correct password", "Qwe1rtyu"],
-    ["correct password with > 8 symbols", "qweewereerrt1Q"],
+    ["correct password with 14 symbols", "qwertyui12QWE4"],
+    ["correct password with 30 symbols", "qwertyuiopASDFGHJKLZ1234567890"],
     ["correct password with not one number", "qWeRT123tyu"],
 ]);
 
@@ -30,7 +32,11 @@ export const unCorrectPassword = new Map<string, string>([
     ["uncorrect password with special symbol", "Qwe123$%"],
 ]);
 
-export const correctUsername: string = "ronogor";
+export const correctUsername = new Map<string, string>([
+    ["correct username", "ronogor"],
+    ["correct username with spicial symbols", "Nagib@torrr"],
+    ["correct username with numbers", "valerka228"],
+]);
 export const unCorrectUsername: string = "";
 
 export const correctAge = new Map<string, number>([
