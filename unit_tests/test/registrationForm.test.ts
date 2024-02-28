@@ -1,6 +1,18 @@
-import { userForRegistration, correctEmail, unCorrectEmail, correctPassword, unCorrectPassword, correctUsername, unCorrectUsername, correctAge, unCorrectAge, dataForTestRegister, adminPassword, wrongAdminPassword } from "./testData";
+import {
+    userForRegistration,
+    correctEmail,
+    unCorrectEmail,
+    correctPassword,
+    unCorrectPassword,
+    correctUsername,
+    unCorrectUsername,
+    correctAge,
+    unCorrectAge,
+    dataForTestRegister,
+    adminPassword,
+    wrongAdminPassword,
+} from "./testData";
 import { Errors, SuccessMessages } from "../constants";
-
 
 describe("Test class RegistrationForm", () => {
     beforeEach(() => {
@@ -34,7 +46,7 @@ describe("Test class RegistrationForm", () => {
 
     test("Negative test: input wrong admin password for get user password", () => {
         expect(() => userForRegistration.checkPassword(wrongAdminPassword)).toThrow(Errors.WRONGADMINPASS);
-    })
+    });
 
     test(`Positive test: input correct username`, () => {
         userForRegistration.setUsername(correctUsername);
@@ -68,42 +80,78 @@ describe("Test class RegistrationForm", () => {
     });
 
     test("Positive test: success registration", () => {
-        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
+        userForRegistration.fillFieldForRegister(
+            dataForTestRegister.EMAIL,
+            dataForTestRegister.PASSWORD,
+            dataForTestRegister.USERNAME,
+            dataForTestRegister.AGE,
+            dataForTestRegister.AGREEMENTWITHTERMS,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(SuccessMessages.SUCCESSREGISTRATION);
         expect(userForRegistration.checkRegistrated).toBeTruthy();
     });
 
     test("Negative test: unsuccess registration without input email", () => {
-        userForRegistration.fillFieldForRegister("", dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
+        userForRegistration.fillFieldForRegister(
+            "",
+            dataForTestRegister.PASSWORD,
+            dataForTestRegister.USERNAME,
+            dataForTestRegister.AGE,
+            dataForTestRegister.AGREEMENTWITHTERMS,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDEMAIL);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input password", () => {
-        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, "", dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
+        userForRegistration.fillFieldForRegister(
+            dataForTestRegister.EMAIL,
+            "",
+            dataForTestRegister.USERNAME,
+            dataForTestRegister.AGE,
+            dataForTestRegister.AGREEMENTWITHTERMS,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDPASSWORD);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input username", () => {
-        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, "", dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
+        userForRegistration.fillFieldForRegister(
+            dataForTestRegister.EMAIL,
+            dataForTestRegister.PASSWORD,
+            "",
+            dataForTestRegister.AGE,
+            dataForTestRegister.AGREEMENTWITHTERMS,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDUSERNAME);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input age", () => {
-        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, 0, dataForTestRegister.AGREEMENTWITHTERMS);
+        userForRegistration.fillFieldForRegister(
+            dataForTestRegister.EMAIL,
+            dataForTestRegister.PASSWORD,
+            dataForTestRegister.USERNAME,
+            0,
+            dataForTestRegister.AGREEMENTWITHTERMS,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDAGE);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
-    
+
     test("Negative test: unsuccess registration - disagreement with the terms of the agreement", () => {
-        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, false);
+        userForRegistration.fillFieldForRegister(
+            dataForTestRegister.EMAIL,
+            dataForTestRegister.PASSWORD,
+            dataForTestRegister.USERNAME,
+            dataForTestRegister.AGE,
+            false,
+        );
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDTERMSAGREEMENT);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
@@ -111,7 +159,14 @@ describe("Test class RegistrationForm", () => {
 
     test("Negative test: unsuccess registration - all fields are not filled in", () => {
         let registretedUser = userForRegistration.register();
-        expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDEMAIL + Errors.INVALIDPASSWORD  + Errors.INVALIDUSERNAME + Errors.INVALIDAGE + Errors.INVALIDTERMSAGREEMENT);
+        expect(registretedUser).toBe(
+            Errors.INVALIDREGISTRATION +
+                Errors.INVALIDEMAIL +
+                Errors.INVALIDPASSWORD +
+                Errors.INVALIDUSERNAME +
+                Errors.INVALIDAGE +
+                Errors.INVALIDTERMSAGREEMENT,
+        );
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 });
