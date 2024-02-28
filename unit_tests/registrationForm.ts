@@ -82,6 +82,31 @@ export default class RegistrationForm {
         }
     }
 
+    public fillFieldForRegister(email: string, password: string, username: string, age: number, agreementWithTerms: boolean){
+        let arraForFill: [Function, string|number][] = [
+            [this.setEmail, email],
+            [this.setPassword, password],
+            [this.setUsername, username],
+            [this.setAge, age]
+        ]
+        arraForFill.forEach((value) => {
+            let fun = value[0];
+            let param = value[1];
+        try {
+            fun.call(this, param);
+        } catch (error) { 
+        }
+        });
+
+        try {
+            if(agreementWithTerms){
+                this.agreeWithTerms();
+            }
+        } catch (error) { 
+            error
+        }
+    }
+
     public clean(): void {
         this.email = "";
         this.password = "";
@@ -116,11 +141,12 @@ export default class RegistrationForm {
     }
 }
 const reg = new RegistrationForm("", "", "", 0);
-reg.setEmail("ronogor228@gmail.com");
-reg.setPassword("qweRt123EW");
-reg.setUsername("w");
-reg.setAge(26);
-reg.agreeWithTerms();
+// reg.setEmail("ronogor228@gmail.com");
+// reg.setPassword("qweRt123EW");
+// reg.setUsername("w");
+// reg.setAge(26);
+// reg.agreeWithTerms();
 // reg.clean();
+reg.fillFieldForRegister("", "qweRt123EW", "w", 26, true);
 console.log(reg.register());
 console.log(reg.checkRegistrated);

@@ -45,9 +45,10 @@ export const unCorrectAge = new Map <string, number>([
     ["uncorrect age - NaN", NaN]
 ]);
 
-export enum dataForTestRegister {
-    EMAIL = "ronogor228@gmail.com",
-    PASSWORD = "Qwe123qw",
-    USERNAME = "ronogor",
-    AGE = 26
+export class dataForTestRegister {
+    static EMAIL = "ronogor228@gmail.com";
+    static PASSWORD = "Qwe123qw";
+    static USERNAME = "ronogor";
+    static AGE = 26;
+    static AGREEMENTWITHTERMS = true;
 }

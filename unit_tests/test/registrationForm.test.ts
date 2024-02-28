@@ -68,61 +68,42 @@ describe("Test class RegistrationForm", () => {
     });
 
     test("Positive test: success registration", () => {
-        userForRegistration.setEmail(dataForTestRegister.EMAIL);
-        userForRegistration.setPassword(dataForTestRegister.PASSWORD);
-        userForRegistration.setUsername(dataForTestRegister.USERNAME);
-        userForRegistration.setAge(dataForTestRegister.AGE);
-        userForRegistration.agreeWithTerms();
+        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(SuccessMessages.SUCCESSREGISTRATION);
         expect(userForRegistration.checkRegistrated).toBeTruthy();
     });
 
     test("Negative test: unsuccess registration without input email", () => {
-        userForRegistration.setPassword(dataForTestRegister.PASSWORD);
-        userForRegistration.setUsername(dataForTestRegister.USERNAME);
-        userForRegistration.setAge(dataForTestRegister.AGE);
-        userForRegistration.agreeWithTerms();
+        userForRegistration.fillFieldForRegister("", dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDEMAIL);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input password", () => {
-        userForRegistration.setEmail(dataForTestRegister.EMAIL);
-        userForRegistration.setUsername(dataForTestRegister.USERNAME);
-        userForRegistration.setAge(dataForTestRegister.AGE);
-        userForRegistration.agreeWithTerms();
+        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, "", dataForTestRegister.USERNAME, dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDPASSWORD);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input username", () => {
-        userForRegistration.setEmail(dataForTestRegister.EMAIL);
-        userForRegistration.setPassword(dataForTestRegister.PASSWORD);
-        userForRegistration.setAge(dataForTestRegister.AGE);
-        userForRegistration.agreeWithTerms();
+        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, "", dataForTestRegister.AGE, dataForTestRegister.AGREEMENTWITHTERMS);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDUSERNAME);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
 
     test("Negative test: unsuccess registration without input age", () => {
-        userForRegistration.setEmail(dataForTestRegister.EMAIL);
-        userForRegistration.setPassword(dataForTestRegister.PASSWORD);
-        userForRegistration.setUsername(dataForTestRegister.USERNAME);
-        userForRegistration.agreeWithTerms();
+        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, 0, dataForTestRegister.AGREEMENTWITHTERMS);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDAGE);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
     });
     
     test("Negative test: unsuccess registration - disagreement with the terms of the agreement", () => {
-        userForRegistration.setEmail(dataForTestRegister.EMAIL);
-        userForRegistration.setPassword(dataForTestRegister.PASSWORD);
-        userForRegistration.setUsername(dataForTestRegister.USERNAME);
-        userForRegistration.setAge(dataForTestRegister.AGE);
+        userForRegistration.fillFieldForRegister(dataForTestRegister.EMAIL, dataForTestRegister.PASSWORD, dataForTestRegister.USERNAME, dataForTestRegister.AGE, false);
         let registretedUser = userForRegistration.register();
         expect(registretedUser).toBe(Errors.INVALIDREGISTRATION + Errors.INVALIDTERMSAGREEMENT);
         expect(userForRegistration.checkRegistrated).toBeFalsy();
