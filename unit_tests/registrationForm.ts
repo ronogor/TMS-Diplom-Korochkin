@@ -144,13 +144,15 @@ export default class RegistrationForm {
         return this.registered;
     }
 }
-const reg = new RegistrationForm("", "", "", 0);
+// const reg = new RegistrationForm("", "", "", 0);
 // reg.setEmail("ronogor228@gmail.com");
 // reg.setPassword("qweRt123EW");
 // reg.setUsername("w");
 // reg.setAge(26);
 // reg.agreeWithTerms();
 // reg.clean();
-reg.fillFieldForRegister("", "qweRt123EW", "w", 26, true);
-console.log(reg.register());
-console.log(reg.checkRegistrated);
+// reg.fillFieldForRegister("", "qweRt123EW", "w", 26, true);
+// console.log(reg.register());
+// console.log(reg.checkRegistrated);
+
+//Комменты не подтирал, я на этом файле дебагаю когда возникает проблема
