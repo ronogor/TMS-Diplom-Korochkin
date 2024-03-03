@@ -28,12 +28,11 @@ export async function get(endpoint: string, statusCode: number, headers: object,
     }
 };
 
-export async function post(endpoint: string, statusCode: number, headers: object, body: object, quary?: object, expectedErrorCode?: number): Promise<any> {
+export async function post(endpoint: string, statusCode: number, headers: object, body: object, expectedErrorCode?: number): Promise<any> {
     try {
         const sendedRequest = await axios({
             method: RequestMethods.POST,
             url: `${mainUrl}${endpoint}`,
-            params: quary ?? {},
             headers: headers,
             data: body
         });
@@ -56,6 +55,7 @@ export async function patch(endpoint: string, statusCode: number, headers: objec
         return handleError(error.response, expectedErrorCode);
     }
 };
+
 async function deleteData(endpoint: string, statusCode: number, id: number, expectedErrorCode?: number): Promise<any> {
     try {
         const sendedRequest = await axios({

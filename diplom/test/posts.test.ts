@@ -1,9 +1,8 @@
-import axios from "axios";
 import { getPostById, getAllPosts, getPostsByUserId, getCommentById, createNewPost, updateTitle, deletePost } from "../API/endpoints/endpointPosts";
 import { StatusCode } from "../testData/constants";
 
 
-describe("Test enndpoint /posts", () => {
+describe("Test requests for enndpoint /posts", () => {
     
     test("Test get all posts from site", async () => {
         const allPosts = await getAllPosts();
@@ -45,7 +44,6 @@ describe("Test enndpoint /posts", () => {
     test("Test create new post", async () => {
         const newPost = await createNewPost("New Post", "This is new post", 2);
         expect(newPost.status).toBe(StatusCode.CREATED);
-        console.log(newPost.data);
     });
 
     test("Test update title", async () => {
@@ -58,13 +56,4 @@ describe("Test enndpoint /posts", () => {
         expect(deletedPost.status).toBe(StatusCode.OK);
     });
 
-    // test("send test request", async() => {
-    //     let axiosRes = await axios({
-    //         method: "get",
-    //         url: `https://jsonplaceholder.typicode.com/posts`,
-    //         params: {"userId": "2"}
-    //         // headers: headers ?? {},
-    //     })
-    //     console.log(axiosRes.data)
-    // });
 });

@@ -1,22 +1,22 @@
 import { AxiosResponse } from "axios";
-import { RequestMethods, defoultHeader, StatusCode } from "../../testData/constants";
+import { defoultHeader, StatusCode } from "../../testData/constants";
 import { get, patch, post, delete as delete_ } from "../api";
 
-const endpoint: string = "/posts";
+const endpointPosts: string = "/posts";
 const endpointComment: string = "/comments";
 
 export async function getAllPosts(expectedErrorCode?: number): Promise<AxiosResponse> {
-    let allPosts = await get(endpoint, StatusCode.OK, defoultHeader, {}, expectedErrorCode);
+    let allPosts = await get(endpointPosts, StatusCode.OK, defoultHeader, {}, expectedErrorCode);
     return allPosts;
 };
 
 export async function getPostById(postId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let postById = await get(endpoint, StatusCode.OK, defoultHeader, {"id": postId}, expectedErrorCode);
+    let postById = await get(endpointPosts, StatusCode.OK, defoultHeader, {"id": postId}, expectedErrorCode);
     return postById;
 };
 
-export async function getPostsByUserId(userId: number, expectedErrorCode?: number){
-    let postsByUserId = await get(endpoint, StatusCode.OK, defoultHeader, {"userId": userId}, expectedErrorCode);
+export async function getPostsByUserId(userId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
+    let postsByUserId = await get(endpointPosts, StatusCode.OK, defoultHeader, {"userId": userId}, expectedErrorCode);
     return postsByUserId;
 };
 
@@ -26,16 +26,16 @@ export async function getCommentById(postId: number, expectedErrorCode?: number)
 };
 
 export async function createNewPost(title: string, body: string, userId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let createdPost = await post(endpoint, StatusCode.CREATED, defoultHeader, {"title": title, "body": body, "userId": userId}, {}, expectedErrorCode);
+    let createdPost = await post(endpointPosts, StatusCode.CREATED, defoultHeader, {"title": title, "body": body, "userId": userId}, expectedErrorCode);
     return createdPost;
 };
 
 export async function updateTitle(idPost: number, title: string, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let updatePost = await patch(endpoint, StatusCode.OK, defoultHeader, idPost, { "title": title }, expectedErrorCode);
+    let updatePost = await patch(endpointPosts, StatusCode.OK, defoultHeader, idPost, { "title": title }, expectedErrorCode);
     return updatePost;
 };
 
 export async function deletePost(idPost: number, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let updatePost = await delete_(endpoint, StatusCode.OK, idPost, expectedErrorCode);
-    return updatePost;
+    let deletedPost = await delete_(endpointPosts, StatusCode.OK, idPost, expectedErrorCode);
+    return deletedPost;
 };
