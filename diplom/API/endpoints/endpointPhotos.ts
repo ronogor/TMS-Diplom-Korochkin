@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defoultHeader, StatusCode } from "../../Data/constants";
+import { defoultHeader, StatusCode } from "../../data/constants";
 import { get, post } from "../api";
 
 const endpointPhotos: string = "/photos";
@@ -19,7 +19,7 @@ export async function downloadNewPhoto(albumId: number, title: string, url: stri
     return newPhoto;
 };
 
-export async function downloadNewPhotoWithoutAlbumId(title: string, url: string, thumbnailUrl: string, expectedErrorCode: number): Promise<AxiosResponse> {
+export async function downloadNewPhotoWithoutAlbumId(title: string, url: string, thumbnailUrl: string, expectedErrorCode?: number): Promise<AxiosResponse> {
     let newPhoto = await post(endpointPhotos, StatusCode.CREATED, defoultHeader, {"title": title, "url": url, "thumbnailUrl": thumbnailUrl}, expectedErrorCode);
     return newPhoto;
 };

@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defoultHeader, StatusCode } from "../../Data/constants";
+import { defoultHeader, StatusCode } from "../../data/constants";
 import { get, post } from "../api";
 
 const endpointAlbum: string = "/albums";

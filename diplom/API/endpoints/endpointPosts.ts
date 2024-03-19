@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defoultHeader, StatusCode } from "../../Data/constants";
+import { defoultHeader, StatusCode } from "../../data/constants";
 import { get, patch, post, delete as delete_ } from "../api";
 
 const endpointPosts: string = "/posts";
@@ -10,8 +10,8 @@ export async function getAllPosts(expectedErrorCode?: number): Promise<AxiosResp
     return allPosts;
 };
 
-export async function getPostById(postId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let postById = await get(endpointPosts, StatusCode.OK, defoultHeader, {"id": postId}, expectedErrorCode);
+export async function getPostById(id: number, expectedErrorCode?: number): Promise<AxiosResponse> {
+    let postById = await get(endpointPosts, StatusCode.OK, defoultHeader, {"id": id}, expectedErrorCode);
     return postById;
 };
 
@@ -30,12 +30,12 @@ export async function createNewPost(title: string, body: string, userId: number,
     return createdPost;
 };
 
-export async function updateTitle(idPost: number, title: string, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let updatePost = await patch(endpointPosts, StatusCode.OK, defoultHeader, idPost, { "title": title }, expectedErrorCode);
+export async function updateTitle(postId: number, title: string, expectedErrorCode?: number): Promise<AxiosResponse> {
+    let updatePost = await patch(endpointPosts, StatusCode.OK, defoultHeader, postId, { "title": title }, expectedErrorCode);
     return updatePost;
 };
 
-export async function deletePost(idPost: number, expectedErrorCode?: number): Promise<AxiosResponse> {
-    let deletedPost = await delete_(endpointPosts, StatusCode.OK, idPost, expectedErrorCode);
+export async function deletePost(postId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
+    let deletedPost = await delete_(endpointPosts, StatusCode.OK, postId, expectedErrorCode);
     return deletedPost;
 };
