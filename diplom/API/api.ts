@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios"
-import { RequestMethods } from "../testData/constants";
+import { RequestMethods } from "../Data/constants";
 
 const mainUrl: string = "https://jsonplaceholder.typicode.com";
 

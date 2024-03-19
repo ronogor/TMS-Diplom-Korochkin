@@ -1,5 +1,5 @@
 import { getPostById, getAllPosts, getPostsByUserId, getCommentById, createNewPost, updateTitle, deletePost } from "../API/endpoints/endpointPosts";
-import { StatusCode } from "../testData/constants";
+import { StatusCode } from "../Data/constants";
 
 
 describe("Test requests for enndpoint /posts", () => {
@@ -15,8 +15,8 @@ describe("Test requests for enndpoint /posts", () => {
     });
     
     test.skip("Negative test get post by invalid Id", async() => {
-        const postById = await getPostById(1221121212122, StatusCode.NOTFOUND);
-        expect(postById.status).toBe(StatusCode.NOTFOUND);
+        const postById = await getPostById(1221121212122, StatusCode.NOT_FOUND);
+        expect(postById.status).toBe(StatusCode.NOT_FOUND);
     });
 
     test("Test get user posts by user Id", async() => {

@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { defoultHeader, StatusCode } from "../../testData/constants";
+import { defoultHeader, StatusCode } from "../../Data/constants";
 import { get, patch, post, delete as delete_ } from "../api";
 
 const endpointPosts: string = "/posts";

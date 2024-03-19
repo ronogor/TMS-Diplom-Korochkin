@@ -1,4 +1,4 @@
-import { StatusCode } from "../testData/constants";
+import { StatusCode } from "../Data/constants";
 import { createNewAlbum, getAlbumBiId, getAllAlbums, getUserAlbums } from "../API/endpoints/endpointAlbums";
 
 describe("Test requests for enndpoint /albums", () => {

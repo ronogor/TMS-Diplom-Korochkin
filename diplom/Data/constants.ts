@@ -14,6 +14,7 @@ export const defoultHeader: {
 export enum StatusCode {
     OK = 200,
     CREATED = 201,
-    BADREQUEST = 400,
-    NOTFOUND = 404
+    BAD_REQUEST = 400,
+    NOT_FOUND = 404
 }
+
