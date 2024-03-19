@@ -4,7 +4,8 @@
   "description": "diploma project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format_code": "prettier --write \"**/*.ts\"",
+    "test": "npx jest"
   },
   "author": "ronogor",
   "license": "ISC",
