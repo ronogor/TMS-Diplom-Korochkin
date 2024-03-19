@@ -5,7 +5,7 @@ import { MinMaxIdPositive, PhotoBodyData } from "../data/testData";
 
 describe("Test requests for enndpoint /posts", () => {
     test("Test get phoos by album id", async () => {
-        let albumPhotos = await getPhotosByIdAlbum(2);
+        let albumPhotos = await getPhotosByIdAlbum(randomNumber(MinMaxIdPositive.MIN_ID, MinMaxIdPositive.MAX_ALBUM_ID));
         expect(albumPhotos.status).toBe(StatusCode.OK);
     });
 

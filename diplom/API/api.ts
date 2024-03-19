@@ -20,7 +20,6 @@ export async function get(endpoint: string, statusCode: number, headers: object,
             url: `${mainUrl}${endpoint}`,
             params: quary ?? {},
             headers: headers,
-            // data: body ?? {}
         });
         return handleResponse(sendedRequest, statusCode);
     } catch (error: any) {

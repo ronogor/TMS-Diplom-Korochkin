@@ -1,5 +1,5 @@
 import { randomNumber, randomNumberNegative } from "../../helpers/randomNumber";
-import { getPostById, getAllPosts, getPostsByUserId, getCommentById, createNewPost, updateTitle, deletePost } from "../API/endpoints/endpointPosts";
+import { getPostById, getAllPosts, getPostsByUserId, getCommentsByPostId, createNewPost, updateTitle, deletePost, getCommentById } from "../API/endpoints/endpointPosts";
 import { StatusCode } from "../data/constants";
 import { MinMaxIdPositive } from "../data/testData";
 
@@ -32,13 +32,18 @@ describe("Test requests for enndpoint /posts", () => {
         expect(postsByUserId.data).toEqual([])
     });
     
-    test("Test get post comment by Id", async () => {
+    test("Test get comments by post Id", async () => {
+        const commentByPostId = await getCommentsByPostId(randomNumber(MinMaxIdPositive.MIN_ID, MinMaxIdPositive.MAX_USER_ID));
+        expect(commentByPostId.status).toBe(StatusCode.OK);
+    });
+
+    test("Test get comment by Id comment", async () => {
         const commentById = await getCommentById(randomNumber(MinMaxIdPositive.MIN_ID, MinMaxIdPositive.MAX_USER_ID));
         expect(commentById.status).toBe(StatusCode.OK);
     });
     
     test("Negative test get post comment by invalid Id", async () => {
-        const commentById = await getCommentById(randomNumberNegative());
+        const commentById = await getCommentsByPostId(randomNumberNegative());
         expect(commentById.status).toBe(StatusCode.OK);
         expect(commentById.data).toEqual([]);
     });

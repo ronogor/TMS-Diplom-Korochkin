@@ -20,8 +20,13 @@ export async function getPostsByUserId(userId: number, expectedErrorCode?: numbe
     return postsByUserId;
 };
 
-export async function getCommentById(postId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
+export async function getCommentsByPostId(postId: number, expectedErrorCode?: number): Promise<AxiosResponse> {
     let commentById = await get(endpointComment, StatusCode.OK, defoultHeader, {"postId": postId}, expectedErrorCode);
+    return commentById;
+};
+
+export async function getCommentById(id: number, expectedErrorCode?: number): Promise<AxiosResponse> {
+    let commentById = await get(endpointComment, StatusCode.OK, defoultHeader, {"id": id}, expectedErrorCode);
     return commentById;
 };
 
