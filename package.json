@@ -4,14 +4,18 @@
   "description": "diploma project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.ts"
   },
   "author": "ronogor",
   "license": "ISC",
-  "dependencies": {
-    "typescript": "^5.3.3"
-  },
   "devDependencies": {
-    "prettier": "^3.2.5"
+    "@wdio/cli": "^8.35.1",
+    "@wdio/cucumber-framework": "^8.35.0",
+    "@wdio/local-runner": "^8.35.1",
+    "@wdio/spec-reporter": "^8.32.4",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
   }
 }
