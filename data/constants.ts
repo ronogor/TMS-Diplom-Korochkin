@@ -8,3 +8,4 @@ export enum NewUser {
     PASSWORD = "vevT~IeJt@H}"
 }
 
+//h2/a[contains(text(),'Авто')]/ancestor::div[contains(@class,'b-main-page-news-2')]//i (локатор на 1 статью а разделе авто)
