@@ -6,11 +6,7 @@ When(/I will fill "Memory Cards" in the quick search field/, async () => {
 
 });
 
-Then(/I see search popup/, async () => {
-
-});
-
-Then(/There is a link to the corresponding category among the search results/, async () => {
+Then(/I see search popup.There is a link to the corresponding category among the search results/, async () => {
 
 });
 
@@ -34,10 +30,6 @@ When(/I will click on name of the found product/, async () => {
 
 });
 
-Then(/The product page is open/, async () => {
-
-});
-
-Then(/The name corresponds to the one you are looking for/, async () => {
+Then(/The product page is open. The name corresponds to the one you are looking for/, async () => {
 
 });
