@@ -22,7 +22,7 @@ Then(/The search results are not displayed/, async () => {
 
 });
 
-When(/I am filling in the search field with a product: '(.*)'/, async (product: string) => {
+When(/I am filling in the search field with a product: "(.*)"/, async (product: string) => {
 
 });
 

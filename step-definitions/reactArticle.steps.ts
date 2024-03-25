@@ -1,5 +1,9 @@
-import { When, Then } from '@wdio/cucumber-framework';
+import { When, Then, Given } from '@wdio/cucumber-framework';
 
+
+Given(/I am logged in/, async () => {
+
+});
 
 When(/I will click on the first article in the "Авто" category/, async () => {
 

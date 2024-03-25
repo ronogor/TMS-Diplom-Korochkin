@@ -9,7 +9,7 @@ Scenario Outline: I can find a specific product through a quick search
         And There is a link to the corresponding category among the search results
     When I will clean search field
     Then The search results are not displayed
-    When I am filling in the search field with a product: '<product>'
+    When I am filling in the search field with a product: "<product>"
     Then The desired product is present in the search results, the price is displayed for it, and the "Предложения" button
     When I will click on name of the found product
     Then The product page is open
