@@ -1,5 +1,6 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect, $ } from '@wdio/globals'
+import { expect } from '@wdio/globals';
+
 
 import LoginPage from '../../y/login.page';
 import SecurePage from '../../y/secure.page';
