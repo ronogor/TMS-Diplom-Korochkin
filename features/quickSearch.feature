@@ -1,5 +1,6 @@
 Feature: search for a specific product through a quick search
 
+@quickSearch
 Scenario Outline: I can find a specific product through a quick search
 
     Given I am on the main page

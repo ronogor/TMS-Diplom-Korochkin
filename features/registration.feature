@@ -1,5 +1,6 @@
 Feature: Registering a new account
 
+@registration
 Scenario: I can register a new account
 
     Given I am on the main page

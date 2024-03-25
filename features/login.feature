@@ -1,5 +1,6 @@
 Feature: Log in to a registered account
 
+@login
 Scenario: If there is a registered account, I can log in to this account
 
     Given I am on the main page

@@ -1,5 +1,6 @@
 Feature: I can put a reaction to the article
 
+@reactArticle
 Scenario: If there is a registered account and user authorized, I can put a reaction to the article
 
     Given I am on the main page
