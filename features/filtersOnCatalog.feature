@@ -5,7 +5,7 @@ Scenario Outline: I can apply filters on the catalog page
 
     Given I am on the catalog page
         And I am logged in
-    When I switch to the "Laptops" catalog category along the way: "Компьютеры и сети" -> "Ноутбуки и комплектующие" -> "Ноутбуки"
+    When I switch to the "Laptops" catalog category along the way: "Компьютеры и сети" - "Ноутбуки и комплектующие" - "Ноутбуки"
     Then The "Ноутбуки" catalog page is open. Page title = "Ноутбуки"
     When I will choose the Manufacturer = "<manufacturer>"
     Then The "<manufacturer>" filter appeared at the top of the page. The number of products found has decreased

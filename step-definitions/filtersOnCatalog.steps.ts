@@ -6,7 +6,7 @@ Given(/I am on the catalog page/, async () => {
 
 });
 
-When(/I switch to the "Laptops" catalog category along the way: "Компьютеры и сети" -> "Ноутбуки и комплектующие" -> "Ноутбуки"/, async () => {
+When(/I switch to the "Laptops" catalog category along the way: "Компьютеры и сети" - "Ноутбуки и комплектующие" - "Ноутбуки"/, async () => {
     
 });
 
