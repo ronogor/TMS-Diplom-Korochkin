@@ -21,6 +21,9 @@ class LoginPage extends BasePage {
     private get captchaLocator() {
         return $("//div[contains(@class,'auth-form__title_condensed-other')]");
     }
+    private get registrationFormLocator() {
+        return $("//a[contains(@class,'auth-form__link_primary') and contains(text(),'Зарегистрироваться на Onlíner')]");
+    }
 
 
     async checkTitleLoginPage() {
@@ -42,6 +45,10 @@ class LoginPage extends BasePage {
 
     async getCaptchaTitle(): Promise<string> {
         return await this.captchaLocator.getText();
+    }
+
+    async openRegistrationForm() {
+        await this.registrationFormLocator.click();
     }
 }
 

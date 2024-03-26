@@ -4,7 +4,7 @@
   "description": "diploma project",
   "main": "index.js",
   "scripts": {
-    "test": "wdio run ./wdio.conf.ts --cucumberOpts.tags='@login'",
+    "test": "",
     "wdio": "wdio run ./wdio.conf.ts",
     "generate-report": "allure generate ./allure-results --clean",
     "allure-open": "allure open"

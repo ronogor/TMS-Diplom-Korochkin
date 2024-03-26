@@ -4,14 +4,14 @@ export function randomEmail(): string {
     for(let i: number = 0; i < 10; i++) {
         email += dataForRegEx[Math.round(Math.random() * (62 - 1) + 1)]
     }
-    return `${email}@gmail.com`
+    return `${email}@gmail.com`;
 }
 
 export function randomPassword(): string {
-    const dataForRegEx: string[] = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789").split("");
+    const dataForRegEx: string[] = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()~").split("");
     let password: string = "";
     for(let i: number = 0; i < 12; i++) {
-        password += dataForRegEx[Math.round(Math.random() * (62 - 1) + 1)]
+        password += dataForRegEx[Math.round(Math.random() * (73 - 1) + 1)]
     }
-    return password
+    return password;
 }

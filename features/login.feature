@@ -11,4 +11,3 @@ Scenario: If there is a registered account, I can log in to this account
         And Press the button "Войти"
     Then I see a captcha
 
-    Examples:
