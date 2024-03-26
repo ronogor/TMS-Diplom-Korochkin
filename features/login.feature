@@ -7,8 +7,7 @@ Scenario: If there is a registered account, I can log in to this account
     When I will press the "Вход" button
     Then I will be on the log in page
 
-    When I am filling in the field "Ник или e-mail"
-        And I am filling in the field "Пароль"
+    When I am filling in the field "Ник или e-mail" and "Пароль"
         And Press the button "Войти"
     Then I see a captcha
 

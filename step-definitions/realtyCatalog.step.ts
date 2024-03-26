@@ -1,5 +1,5 @@
-import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect } from '@wdio/globals';
+import { When, Then } from '@wdio/cucumber-framework';
+// import { expect } from '@wdio/globals';
 
 
 When(/I go to the page on the way: "Дома и квартиры" - "Аренда" - "Минск" /, async () => {

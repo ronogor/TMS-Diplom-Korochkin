@@ -1,5 +1,5 @@
-import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect } from '@wdio/globals';
+import { When, Then } from '@wdio/cucumber-framework';
+// import { expect } from '@wdio/globals';
 
 
 When(/I click on the "Поддержка пользователей" link in the footer /, async () => {
