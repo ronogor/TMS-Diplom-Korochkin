@@ -2,11 +2,7 @@ import { Given, When, Then } from '@wdio/cucumber-framework';
 import { expect } from '@wdio/globals';
 
 
-When(/I will click on "Каталог" link/, async () => {
-
-});
-
-Then(/I see catalog page/, async () => {
+Given(/I am on the catalog page/, async () => {
 
 });
 

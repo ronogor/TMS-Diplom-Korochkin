@@ -3,10 +3,8 @@ Feature: Filtering the catalog page
 @catalogFilters
 Scenario Outline: I can apply filters on the catalog page
 
-    Given I am on the main page
+    Given I am on the catalog page
         And I am logged in
-    When I will click on "Каталог" link
-    Then I see catalog page
     When I switch to the "Laptops" catalog category along the way: "Компьютеры и сети" -> "Ноутбуки и комплектующие" -> "Ноутбуки"
     Then The "Ноутбуки" catalog page is open. Page title = "Ноутбуки"
     When I will choose the Manufacturer = "<manufacturer>"
