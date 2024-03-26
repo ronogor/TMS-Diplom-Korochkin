@@ -3,11 +3,6 @@ export enum RegistredUser {
     PASSWORD = "lCkWQ6ZoJRil"
 }
 
-export enum NewUser {
-    LOGIN = "tohire7332@nimadir.com",
-    PASSWORD = "vevT~IeJt@H}"
-}
-
 export const loginPageTitle: string = "Вход" 
 
 export const loginCaptchaTitle: string = "Помогите нам улучшить безопасность";
