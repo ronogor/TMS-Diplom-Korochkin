@@ -4,6 +4,7 @@ Feature: search for a specific product through a quick search
 Scenario Outline: I can find a specific product through a quick search
 
     Given I am on the main page
+    
     When I will fill "Memory Cards" in the quick search field
     Then I see search popup.There is a link to the corresponding category among the search results
     When I will clean search field
