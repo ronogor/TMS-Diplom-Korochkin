@@ -29,7 +29,7 @@ When(/I will press the nearest positive react button/, async () => {
     //     }
     //   );
     quantityReactionBeforeReact = await AutoPage.getReactionQuantity();
-    await browser.pause(500);
+    await browser.pause(700);
     await AutoPage.setReaction();
 });
 
