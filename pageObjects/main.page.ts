@@ -9,6 +9,9 @@ class MainPage extends BasePage {
     private get firstAutoPostLocator() {
         return $("(//h2/a[contains(text(),'Авто')]/ancestor::div[contains(@class,'b-main-page-news-2')]//span[contains(@class,'text-i')])[1]");
     }
+    private get quickSearchInput () {
+        return $("//input[contains(@class,'fast-search__input')]");
+    }
 
 
     async openLoginPage() {
@@ -18,6 +21,10 @@ class MainPage extends BasePage {
     async openFirstAutoPost() {
         await this.firstAutoPostLocator.scrollIntoView({ block: 'center', inline: 'center' });
         await this.firstAutoPostLocator.click();
+    }
+
+    async fillQuickSearchField(searchTerm: string) {
+        await this.quickSearchInput.setValue(searchTerm);
     }
 }
 

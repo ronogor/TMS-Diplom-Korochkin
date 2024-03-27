@@ -1,4 +1,5 @@
 import { $ } from "@wdio/globals";
+
 export default class BaseFrame {
     constructor(protected frameLocator: string) {}
 
