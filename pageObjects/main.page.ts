@@ -12,7 +12,9 @@ class MainPage extends BasePage {
     private get quickSearchInput () {
         return $("//input[contains(@class,'fast-search__input')]");
     }
-
+    private get currenncyRateLinkLocator() {
+        return $("//a[contains(@class,'b-top-navigation-informers__link')]/span[contains(@class,'js-currency-amount')]");
+    }
 
     async openLoginPage() {
         await this.entranceButton.click();
@@ -25,6 +27,10 @@ class MainPage extends BasePage {
 
     async fillQuickSearchField(searchTerm: string) {
         await this.quickSearchInput.setValue(searchTerm);
+    }
+
+    async openConverterPage() {
+        await this.currenncyRateLinkLocator.click();
     }
 }
 

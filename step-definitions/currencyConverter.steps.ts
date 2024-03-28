@@ -1,13 +1,18 @@
 import { When, Then } from '@wdio/cucumber-framework';
-// import { expect } from '@wdio/globals';
+import MainPage from '../pageObjects/main.page';
+import { expect } from '@wdio/globals';
+import ConverterPage from '../pageObjects/converter.page';
+import { converterPageUrl } from '../data/urls';
 
 
 When(/I will click on the link with the dollar exchange rate on the main page/, async () => {
-
+    await MainPage.openConverterPage();
 });
 
-Then(/I see The "Лучшие курсы валют" page is open, today's date is displayed, the exchange rate sections for USD, EUR, RUB/, async () => {
+Then(/I see converter page is open, today's date is displayed, the exchange rate sections for USD, EUR, RUB/, async () => {
+    const currentUrl: string = await ConverterPage.checkUrl();
 
+    expect(currentUrl).toEqual(converterPageUrl);
 });
 
 When(/I will click the "Купить" button in the converter/, async () => {
