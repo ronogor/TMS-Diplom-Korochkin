@@ -21,6 +21,8 @@ export const partOfTitleSellersOffers: string = "Цены на";
 
 export const partOfMessageAboutDeleteProductFromCart: string = "Вы удалили";
 
+export const textForCheckCurrensyField: string = "dsaasddasioiouoiusd";
+
 export enum adressAndInformationData {
     CITI = "Минск",
     STREET = "пр-т Победителей",

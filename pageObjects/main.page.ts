@@ -30,6 +30,7 @@ class MainPage extends BasePage {
     }
 
     async openConverterPage() {
+        await this.currenncyRateLinkLocator.waitForClickable();
         await this.currenncyRateLinkLocator.click();
     }
 }
