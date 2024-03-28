@@ -22,8 +22,8 @@ Then(/The "Ноутбуки" catalog page is open. Page title = "(.*)"/, async (
 
 let quantityProductsBeforeFilter: string
 When(/I will choose the Manufacturer = "(.*)"/, async (manufacturer: string) => {
-    await CatalogPage.enableCheckboxManufactorer(manufacturer);
     quantityProductsBeforeFilter = await CatalogPage.getQuantityFoundProducts();
+    await CatalogPage.enableCheckboxManufactorer(manufacturer);
 });
 
 let quantityProductsAfterFirstFilter: string

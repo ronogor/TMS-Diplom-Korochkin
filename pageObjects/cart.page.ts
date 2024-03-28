@@ -30,6 +30,8 @@ class CartPage extends BasePage {
 
     async deleteProductFromCart() {
         await this.deleteProductFromCartLocator.moveTo();
+        await this.deleteProductFromCartLocator.waitForClickable();
+        await this.deleteProductFromCartLocator.waitForDisplayed();
         await this.deleteProductFromCartLocator.click();
     }
 

@@ -21,15 +21,8 @@ Then(/I see article on page 'auto.onliner.by'/, async () => {
 
 let quantityReactionBeforeReact: string;
 When(/I will press the nearest positive react button/, async () => {
-    // await browser.waitUntil(
-    //     async () => await browser.execute(() => document.readyState === 'complete'),
-    //     {
-    //       timeout: 60 * 1000, // 60 seconds
-    //       timeoutMsg: 'Message on failure'
-    //     }
-    //   );
     quantityReactionBeforeReact = await AutoPage.getReactionQuantity();
-    await browser.pause(700);
+    await browser.pause(2000);
     await AutoPage.setReaction();
 });
 

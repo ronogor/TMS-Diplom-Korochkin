@@ -31,10 +31,10 @@ class DecorationOrderPage extends BasePage {
     private get addCartButton() {
         return $("//button[contains(@class,'cart-form__button') and contains(text(),'Добавить карту')]");
     }
-    private dropdownKillAdressLocator() {
+    private get dropdownKillAdressLocator() {
         return $("//div[contains(@class,'cart-form__popover-trigger_ellipsis')]");
     }
-    private killAdressOptionLocator() {
+    private get killAdressOptionLocator() {
         return $("//a[contains(@class,'cart-form__link_error')]");
     }
 
@@ -52,8 +52,6 @@ class DecorationOrderPage extends BasePage {
     }
 
     async fillAdressAndInformationFields() {
-        // await this.dataFieldsInputs[0].clearValue();
-        // await this.dataFieldsInputs[0].setValue(adressAndInformationData.CITI);
         await this.dataFieldsInputs[1].setValue(adressAndInformationData.STREET);
         await this.dropdownStreet.waitForClickable();
         await browser.keys("Enter");
@@ -63,7 +61,6 @@ class DecorationOrderPage extends BasePage {
         await this.dataFieldsInputs[6].setValue(adressAndInformationData.FLAT);
         await this.dataFieldsInputs[7].setValue(adressAndInformationData.NAME);
         await this.dataFieldsInputs[8].setValue(adressAndInformationData.SURNAME);
-        await this.dataFieldsInputs[10].clearValue();
         await this.dataFieldsInputs[10].setValue(adressAndInformationData.PHONE);
     }
 
@@ -102,8 +99,10 @@ class DecorationOrderPage extends BasePage {
     }
 
     async killAddress() {
-        await this.dropdownKillAdressLocator().click();
-        await this.killAdressOptionLocator().click();
+        await this.dropdownKillAdressLocator.waitForClickable();
+        await this.dropdownKillAdressLocator.click();
+        await this.killAdressOptionLocator.click();
+        await this.dataFieldsInputs[10].waitForDisplayed();
     }
 }
 
