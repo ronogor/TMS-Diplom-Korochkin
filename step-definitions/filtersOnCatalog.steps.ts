@@ -33,6 +33,7 @@ Then(/The "(.*)" filter appeared at the top of the page. The number of products 
     let i: number = 0;
     while(+(await CatalogPage.getQuantityFoundProducts()) === +quantityProductsBeforeFilter) {
         await CatalogPage.getQuantityFoundProducts();
+        i++
         if(i === 100) {
             expect(true).toBeFalsy();
             break;
@@ -65,6 +66,7 @@ Then(/The number of products found has decreased. The "(.*)" filter is also pres
     let i: number = 0;
     while(+(await CatalogPage.getQuantityFoundProducts()) === +quantityProductsAfterFirstFilter) {
         await CatalogPage.getQuantityFoundProducts();
+        i++;
         if(i === 100) {
             expect(true).toBeFalsy();
             break;
