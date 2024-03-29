@@ -2,6 +2,7 @@ import { Given, When, Then } from '@wdio/cucumber-framework';
 import CatalogPage from '../pageObjects/catalog.page';
 import { superPriceFilter } from '../data/constants';
 import { expect } from '@wdio/globals';
+import { waitChengeQuantityOnWebElement } from '../helpers/waitChangeQuantity';
 
 
 Given(/I am on the catalog page/, async () => {
@@ -20,31 +21,33 @@ Then(/The "Ноутбуки" catalog page is open. Page title = "(.*)"/, async (
     expect(titleText).toEqual(titleName);
 });
 
-let quantityProductsBeforeFilter: string
+let quantityProductsBeforeFilter: number;
 When(/I will choose the Manufacturer = "(.*)"/, async (manufacturer: string) => {
     quantityProductsBeforeFilter = await CatalogPage.getQuantityFoundProducts();
     await CatalogPage.enableCheckboxManufactorer(manufacturer);
 });
 
-let quantityProductsAfterFirstFilter: string
+let quantityProductsAfterFirstFilter: number
 Then(/The "(.*)" filter appeared at the top of the page. The number of products found has decreased/, async (manufacturer: string) => {
     const textLable: string = await CatalogPage.getFilterLableText(manufacturer);
 
-    let i: number = 0;
-    while(+(await CatalogPage.getQuantityFoundProducts()) === +quantityProductsBeforeFilter) {
-        await CatalogPage.getQuantityFoundProducts();
-        i++
-        if(i === 100) {
-            expect(true).toBeFalsy();
-            break;
-        }
-    }
+    // let i: number = 0;
+    // while(+(await CatalogPage.getQuantityFoundProducts()) === +quantityProductsBeforeFilter) {
+    //     await CatalogPage.getQuantityFoundProducts();
+    //     i++
+    //     if(i === 100) {
+    //         expect(true).toBeFalsy();
+    //         break;
+    //     }
+    // }
+    await browser.waitUntil(async () => {
+        return await waitChengeQuantityOnWebElement((await CatalogPage.getQuantityFoundProducts()), quantityProductsBeforeFilter);
+    })
 
     quantityProductsAfterFirstFilter = await CatalogPage.getQuantityFoundProducts();
 
     expect(textLable).toEqual(manufacturer);
-    expect(+quantityProductsBeforeFilter > +quantityProductsAfterFirstFilter
-        ).toBeTruthy();
+    expect(quantityProductsBeforeFilter).toBeGreaterThan(quantityProductsAfterFirstFilter);
 });
 
 When(/I have Set the frequency of the matrix from "(.*)" to "(.*)" Hz/, async (frequencyMatrixFrom: string, frequencyMatrixTo: string) => {
@@ -59,25 +62,27 @@ Then(/I see the filter "(.*)" appeared at the top of the page/, async (frequency
     expect(textLable).toEqual(frequencyFilter);
 });
 
-let quantityProductsAfterSecondFilter: string
+let quantityProductsAfterSecondFilter: number
 Then(/The number of products found has decreased. The "(.*)" filter is also present/, async (manufacturer: string) => {
     const textLable: string = await CatalogPage.getFilterLableText(manufacturer);
 
-    let i: number = 0;
-    while(+(await CatalogPage.getQuantityFoundProducts()) === +quantityProductsAfterFirstFilter) {
-        await CatalogPage.getQuantityFoundProducts();
-        i++;
-        if(i === 100) {
-            expect(true).toBeFalsy();
-            break;
-        }
-    }
+    // let i: number = 0;
+    // while((await CatalogPage.getQuantityFoundProducts()) === quantityProductsAfterFirstFilter) {
+    //     await CatalogPage.getQuantityFoundProducts();
+    //     i++;
+    //     if(i === 100) {
+    //         expect(true).toBeFalsy();
+    //         break;
+    //     }
+    // }
+    await browser.waitUntil(async () => {
+        return await waitChengeQuantityOnWebElement((await CatalogPage.getQuantityFoundProducts()) , quantityProductsAfterFirstFilter);
+    })
 
     quantityProductsAfterSecondFilter = await CatalogPage.getQuantityFoundProducts();
 
     expect(textLable).toEqual(manufacturer);
-    expect(+quantityProductsAfterFirstFilter > +quantityProductsAfterSecondFilter
-        ).toBeTruthy();
+    expect(quantityProductsAfterFirstFilter).toBeGreaterThan(quantityProductsAfterSecondFilter)
 });
 
 When(/I will choose filter "Суперцена"/, async () => {

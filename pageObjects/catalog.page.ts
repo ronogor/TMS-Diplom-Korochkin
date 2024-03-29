@@ -84,9 +84,9 @@ class CatalogPage extends BasePage {
         await this.getFilterLableLocator(filter).click();
     }
     
-    async getQuantityFoundProducts(): Promise<string> {
+    async getQuantityFoundProducts(): Promise<number> {
         await this.numberOfProductsLocator.waitForStable();
-        return (await this.numberOfProductsLocator.getText()).replace(/[^0-9]/g,"");
+        return +((await this.numberOfProductsLocator.getText()).replace(/[^0-9]/g,""));
     }
 
     async checkHotPriceInProducts() {

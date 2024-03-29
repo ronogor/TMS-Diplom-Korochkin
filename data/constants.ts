@@ -23,6 +23,8 @@ export const partOfMessageAboutDeleteProductFromCart: string = "Вы удали�
 
 export const textForCheckCurrensyField: string = "dsaasddasioiouoiusd";
 
+export const roomOnRealtCatalogPage: string = "Комната";
+
 export enum adressAndInformationData {
     CITI = "Минск",
     STREET = "пр-т Победителей",
@@ -50,3 +52,17 @@ export enum RegistrationFormNameField {
 }
 
 export const loginCaptchaTitle: string = "Помогите нам улучшить безопасность";
+
+export enum QuantityRooms {
+    ONE = "1к",
+    TWO = "2к",
+    THREE = "3к",
+    FOUR = "4к",
+
+    ROOM = "Комната",
+}
+
+export enum FiltersOnRealtyPage {
+    TWO_ROOMS = "2",
+    FLAT = "Квартира",
+}
