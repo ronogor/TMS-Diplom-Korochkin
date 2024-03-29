@@ -91,7 +91,7 @@ class DecorationOrderPage extends BasePage {
     async checkActivePaymentMethod() {
         const activePaymentMethod = (await this.activePaymentMethodLocator.getText()).trim();
         
-        expect(activePaymentMethod).toEqual(methodPayment.CARD_ONLINE);
+        expect(activePaymentMethod).toEqual(methodPayment.CARD_OFFLINE);
     }
 
     async checkaddCardButtonIsActive() {
