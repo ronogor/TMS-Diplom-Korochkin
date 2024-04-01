@@ -94,21 +94,14 @@ class RealtyPage extends BasePage {
     }
 
     async checkApplyingSorting(priceForRent: string) {
-        // let i: number = 0;
-        // while(+((await this.pricesInUSDLocators[0].getText()).trim()) !== +priceForRent){
-        //     await this.pricesInUSDLocators
-        //     i++
-        //     if(i === 100){
-        //         expect(true).toBeFalsy();
-        //         break;
-        //     }
-        // }
+        await this.pricesInUSDLocators[0].waitForStable();
+        await this.pricesInUSDLocators[35].waitForStable();
         let previousPrice: number = +priceForRent;
         await this.pricesInUSDLocators.forEach(async (value) => {
             let priceInUsd: number = +(await value.getText()).trim();
 
             expect(previousPrice).toBeGreaterThanOrEqual(priceInUsd);
-            await browser.pause(1500);
+            await browser.pause(700);
             previousPrice = priceInUsd;
         });
     }

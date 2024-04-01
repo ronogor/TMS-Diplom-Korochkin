@@ -15,5 +15,8 @@ export function randomPassword(): string {
     for (let i: number = 0; i < 12; i++) {
         password += dataForRegEx[Math.round(Math.random() * (73 - 1) + 1)];
     }
+    if(password.length > 12) {
+        return password.slice(0, 12);
+    }
     return password;
 }

@@ -103,6 +103,7 @@ When(/I see the number of results on the page has decreassed/, async () => {
 
 When(/I choose the "Сначала дорогие"/, async () => {
     await RealtyPage.selectOptionFirstExpansive();
+    await browser.pause(3000);
 });
 
 Then(/The apartment that was displayed before sorting is not displayed first (.*)/, async (priceForRent: string) => {
