@@ -1,7 +1,6 @@
-import { $ } from '@wdio/globals'
-import BaseFrame from './base.frame';
-import { quickSearchFrame } from '../../data/frames';
-
+import { $ } from "@wdio/globals";
+import BaseFrame from "./base.frame";
+import { quickSearchFrame } from "../../data/frames";
 
 class QuickSearchFrame extends BaseFrame {
     private get linkOnSearchCategoryLocator() {
@@ -20,8 +19,6 @@ class QuickSearchFrame extends BaseFrame {
         return $("//div[contains(@class,'product__title')]/a");
     }
 
-
-
     async getSearchCategoryTitle() {
         return (await this.linkOnSearchCategoryLocator.getText()).trim();
     }
@@ -32,10 +29,8 @@ class QuickSearchFrame extends BaseFrame {
 
     async checkClearSearchField() {
         await this.linkOnSearchCategoryLocator.waitForDisplayed({ reverse: true });
-        
-        expect(
-            await this.linkOnSearchCategoryLocator.isDisplayed()
-        ).toBeFalsy();
+
+        expect(await this.linkOnSearchCategoryLocator.isDisplayed()).toBeFalsy();
     }
 
     async fillSearchField(searchTerm: string) {

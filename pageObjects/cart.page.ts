@@ -3,10 +3,14 @@ import BasePage from "./base.page";
 
 class CartPage extends BasePage {
     private get productOnCartPageLocator() {
-        return $("//div[contains(@class,'cart-form__offers-unit_primary')]//a[contains(text(),'Руль FlashFire Suzuka ES900R')]");
+        return $(
+            "//div[contains(@class,'cart-form__offers-unit_primary')]//a[contains(text(),'Руль FlashFire Suzuka ES900R')]",
+        );
     }
     private get priceProductInCart() {
-        return $("(//div[contains(@class,'cart-form__offers-part_price')]/div[contains(@class,'cart-form__description_base-alter')])[2]");
+        return $(
+            "(//div[contains(@class,'cart-form__offers-part_price')]/div[contains(@class,'cart-form__description_base-alter')])[2]",
+        );
     }
     private get deleteProductFromCartLocator() {
         return $("//a[contains(@class,'cart-form__button_remove')]/parent::div");
@@ -18,14 +22,12 @@ class CartPage extends BasePage {
         return $("//a[contains(@class,'button-style_primary')]");
     }
 
-
-
     async getProductOnCartPageText(): Promise<string> {
         return (await this.productOnCartPageLocator.getText()).trim();
     }
 
     async getProductPriceInCart() {
-        return (await this.priceProductInCart.getText()).trim().replace(/[^0-9]/g,"");
+        return (await this.priceProductInCart.getText()).trim().replace(/[^0-9]/g, "");
     }
 
     async deleteProductFromCart() {

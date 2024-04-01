@@ -12,28 +12,26 @@ export default class BasePage {
         return await browser.getUrl();
     }
 
-    async setCookies () {
-        await browser.setCookies(
-            [ 
-                {
-                  name: "oss",
-                  value: userToken,
-                  domain: ".onliner.by",
-                  path: "/",
-                  httpOnly: true,
-                  secure: true,
-                  sameSite: "Lax"
-                },
-                {
-                  name: "logged_in",
-                  value: "1",
-                  domain: ".onliner.by",
-                  path: "/",
-                  httpOnly: false,
-                  secure: true,
-                  sameSite: "Lax"
-                }
-            ]
-        )
+    async setCookies() {
+        await browser.setCookies([
+            {
+                name: "oss",
+                value: userToken,
+                domain: ".onliner.by",
+                path: "/",
+                httpOnly: true,
+                secure: true,
+                sameSite: "Lax",
+            },
+            {
+                name: "logged_in",
+                value: "1",
+                domain: ".onliner.by",
+                path: "/",
+                httpOnly: false,
+                secure: true,
+                sameSite: "Lax",
+            },
+        ]);
     }
 }

@@ -18,13 +18,19 @@ class ConverterPage extends BasePage {
         return $("//b[contains(@class,'js-cur-result')]");
     }
     private get exchengeRateEURLocator() {
-        return $("(//b[contains(text(),'EUR')]/ancestor::tr[contains(@class,'tr-main')]/td/p[contains(@class,'value')]/b)[2]");
+        return $(
+            "(//b[contains(text(),'EUR')]/ancestor::tr[contains(@class,'tr-main')]/td/p[contains(@class,'value')]/b)[2]",
+        );
     }
 
     private getCurrencyTitleLocator(currency: string) {
-        return $("(//table[contains(@class,'b-currency-table__best')]//b[contains(text(),'{0}')])[1]".replace("{0}", currency));
+        return $(
+            "(//table[contains(@class,'b-currency-table__best')]//b[contains(text(),'{0}')])[1]".replace(
+                "{0}",
+                currency,
+            ),
+        );
     }
-
 
     async getCurrentDate(): Promise<string> {
         return (await this.currentDateLocator.getText()).trim();
@@ -39,7 +45,7 @@ class ConverterPage extends BasePage {
     async pressBuyLabel() {
         await this.buyLabelLocator.click();
     }
-    
+
     async fillCyrrencyField(currencyCount: string | number) {
         await this.enterCurrencyFieldLocator.setValue(currencyCount);
     }
@@ -53,12 +59,12 @@ class ConverterPage extends BasePage {
     }
 
     async getSummCurrencyInByn(): Promise<number> {
-        return +((await this.currencyInBYNLocator.getText()).trim().replace(",", "."));
+        return +(await this.currencyInBYNLocator.getText()).trim().replace(",", ".");
     }
 
     async getExChangeRateEur(): Promise<number> {
-        return +((await this.exchengeRateEURLocator.getText()).trim().replace(",", "."))
+        return +(await this.exchengeRateEURLocator.getText()).trim().replace(",", ".");
     }
 }
 
-export default new ConverterPage(converterPageUrl)
+export default new ConverterPage(converterPageUrl);

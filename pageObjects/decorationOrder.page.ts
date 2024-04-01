@@ -8,7 +8,7 @@ class DecorationOrderPage extends BasePage {
         //div[contains(@class,'cart-form__description_primary')]
         //div[contains(@class,'cart-form__description_primary')]/span`);
     }
-    
+
     private get decorationProductName() {
         return $(`(//div[contains(@class,'cart-form__total')]
         //div[contains(@class,'cart-form__description_primary')]
@@ -42,13 +42,12 @@ class DecorationOrderPage extends BasePage {
         return $("//div[contains(@class,'cart-form__anchor-list')]/div[contains(@id,'{0}')]".replace("{0}", idValue));
     }
 
-
     async getProductNameOnDecorationOrder(): Promise<string> {
         return (await this.decorationProductName.getText()).trim();
     }
 
     async getProductPriceOnDecorationOrder(): Promise<string> {
-        return (await this.decorationProductPrice.getText()).trim().replace(/[^0-9]/g,"");
+        return (await this.decorationProductPrice.getText()).trim().replace(/[^0-9]/g, "");
     }
 
     async fillAdressAndInformationFields() {
@@ -65,32 +64,40 @@ class DecorationOrderPage extends BasePage {
     }
 
     async openWayPayment() {
-        await this.wayPaymentButton.scrollIntoView({ block: 'center', inline: 'center' })
+        await this.wayPaymentButton.scrollIntoView({ block: "center", inline: "center" });
         await this.wayPaymentButton.click();
     }
 
     async checkMethodPaymentName(namePayment: string) {
         switch (namePayment) {
             case methodPayment.CARD_ONLINE:
-                expect((await this.getMethodsPaymentLocator("anchor-item_online_card").getText()).trim()).toEqual(namePayment);
+                expect((await this.getMethodsPaymentLocator("anchor-item_online_card").getText()).trim()).toEqual(
+                    namePayment,
+                );
                 break;
             case methodPayment.MINIPAY:
-                expect((await this.getMethodsPaymentLocator("anchor-item_by_parts").getText()).trim()).toEqual(namePayment);
+                expect((await this.getMethodsPaymentLocator("anchor-item_by_parts").getText()).trim()).toEqual(
+                    namePayment,
+                );
                 break;
             case methodPayment.CARD_OFFLINE:
-                expect((await this.getMethodsPaymentLocator("anchor-item_offline").getText()).trim()).toEqual(namePayment);
+                expect((await this.getMethodsPaymentLocator("anchor-item_offline").getText()).trim()).toEqual(
+                    namePayment,
+                );
                 break;
             case methodPayment.HALVA:
-                expect((await this.getMethodsPaymentLocator("anchor-item_online_installment_card").getText()).trim()).toEqual(namePayment);
+                expect(
+                    (await this.getMethodsPaymentLocator("anchor-item_online_installment_card").getText()).trim(),
+                ).toEqual(namePayment);
                 break;
-            default: 
-            break;
-        } 
+            default:
+                break;
+        }
     }
 
     async checkActivePaymentMethod() {
         const activePaymentMethod = (await this.activePaymentMethodLocator.getText()).trim();
-        
+
         expect(activePaymentMethod).toEqual(methodPayment.CARD_OFFLINE);
     }
 

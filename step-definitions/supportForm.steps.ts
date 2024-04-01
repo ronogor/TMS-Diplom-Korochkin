@@ -1,12 +1,10 @@
-import { When, Then } from '@wdio/cucumber-framework';
-import { expect } from '@wdio/globals';
-import MainPage from '../pageObjects/main.page';
-import SupportPage from '../pageObjects/supportusers.page';
-import { supportUsersPageUrl } from '../data/urls';
-import { adressAndInformationData, randomTextString } from '../data/constants';
-import { randomEmail } from '../helpers/randpmEmailAndPassword';
-
-
+import { When, Then } from "@wdio/cucumber-framework";
+import { expect } from "@wdio/globals";
+import MainPage from "../pageObjects/main.page";
+import SupportPage from "../pageObjects/supportusers.page";
+import { supportUsersPageUrl } from "../data/urls";
+import { adressAndInformationData, randomTextString } from "../data/constants";
+import { randomEmail } from "../helpers/randpmEmailAndPassword";
 
 When(/I click on the "Поддержка пользователей" link in the footer/, async () => {
     await MainPage.openSupprtUsersSection();

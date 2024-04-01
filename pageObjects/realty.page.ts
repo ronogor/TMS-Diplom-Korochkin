@@ -1,7 +1,6 @@
 import { realtyPageUrl } from "../data/urls";
 import BasePage from "./base.page";
 
-
 class RealtyPage extends BasePage {
     private get mapOnRealtyPageLocator() {
         return $("//div[contains(@class,'arenda-map') and contains(@id,'map')]");
@@ -32,9 +31,13 @@ class RealtyPage extends BasePage {
         return $("//span[contains(@class,'filter__item-inner') and contains(text(),'{0}')]".replace("{0}", filter));
     }
     private getQuantityRoomsInFlatLocator(quantityRooms: string) {
-        return $("(//span[contains(@class,'classified__caption-item') and contains(text(),'{0}')])[1]".replace("{0}", quantityRooms));
+        return $(
+            "(//span[contains(@class,'classified__caption-item') and contains(text(),'{0}')])[1]".replace(
+                "{0}",
+                quantityRooms,
+            ),
+        );
     }
-
 
     async checkAvailabilityMap() {
         await this.mapOnRealtyPageLocator.waitForDisplayed();
@@ -46,20 +49,23 @@ class RealtyPage extends BasePage {
 
     async getQuantityRentAdvertisment(): Promise<number> {
         await this.quantityRentAdvertisement.waitForDisplayed();
-        return +(await (await this.quantityRentAdvertisement.getText()).trim().replace(/[^0-9]/g,""));
+        return +(await (await this.quantityRentAdvertisement.getText()).trim().replace(/[^0-9]/g, ""));
     }
 
     async checkQuantityRoomsPositive(quantityRooms: string) {
         await this.getQuantityRoomsInFlatLocator(quantityRooms).waitForDisplayed();
         expect((await this.getQuantityRoomsInFlatLocator(quantityRooms)).isDisplayed()).toBeTruthy();
-    } 
+    }
 
     async checkQuantityRoomsNegative(quantityRooms: string) {
         await this.getQuantityRoomsInFlatLocator(quantityRooms).waitForDisplayed({ reverse: true, timeout: 1000 });
     }
 
     async setValueForRentPriceTo(sumInUsd: string) {
-        await browser.execute(`arguments[0].setAttribute('placeholder', '${sumInUsd}');`, await this.priceForRentToInput);
+        await browser.execute(
+            `arguments[0].setAttribute('placeholder', '${sumInUsd}');`,
+            await this.priceForRentToInput,
+        );
         await browser.execute(`arguments[0].setAttribute('value', '${sumInUsd}');`, await this.priceForRentToInput);
         await this.priceForRentToInput.click();
         await browser.keys("Enter");
@@ -68,13 +74,11 @@ class RealtyPage extends BasePage {
     }
 
     async checkPriceInDollarsSmollerThenValue(sumInUsd: string) {
-        await this.pricesInUSDLocators.forEach( async (value) => {
+        await this.pricesInUSDLocators.forEach(async (value) => {
             const priceInUsd: string = (await value.getText()).trim();
 
-            expect(
-                +priceInUsd <= +sumInUsd
-            ).toBeTruthy();
-        })
+            expect(+priceInUsd <= +sumInUsd).toBeTruthy();
+        });
     }
 
     async selectOptionInUndegroundDropdown() {
@@ -103,11 +107,11 @@ class RealtyPage extends BasePage {
         await this.pricesInUSDLocators.forEach(async (value) => {
             let priceInUsd: number = +(await value.getText()).trim();
 
-            expect((previousPrice)).toBeGreaterThanOrEqual(priceInUsd);
+            expect(previousPrice).toBeGreaterThanOrEqual(priceInUsd);
             await browser.pause(1500);
             previousPrice = priceInUsd;
-        }) 
+        });
     }
-}       
+}
 
 export default new RealtyPage(realtyPageUrl);

@@ -1,9 +1,9 @@
-import { When, Then } from '@wdio/cucumber-framework';
-import LoginPage from '../pageObjects/login.page';
-import RegisrationPage from '../pageObjects/regisration.page';
-import { registrationFormPageUrl } from '../data/urls';
-import { randomEmail, randomPassword } from '../helpers/randpmEmailAndPassword';
-import { RegistrationFormNameField, confirmEmailButtonText } from '../data/constants';
+import { When, Then } from "@wdio/cucumber-framework";
+import LoginPage from "../pageObjects/login.page";
+import RegisrationPage from "../pageObjects/regisration.page";
+import { registrationFormPageUrl } from "../data/urls";
+import { randomEmail, randomPassword } from "../helpers/randpmEmailAndPassword";
+import { RegistrationFormNameField, confirmEmailButtonText } from "../data/constants";
 
 When(/I will press link "Зарегистрироваться на Onliner"/, async () => {
     await LoginPage.openRegistrationForm();
@@ -12,7 +12,7 @@ When(/I will press link "Зарегистрироваться на Onliner"/, as
 Then(/I see registration form/, async () => {
     await RegisrationPage.checkTitleRegistrationPage();
     const currentUrl: string = await RegisrationPage.checkUrl();
-    
+
     expect(currentUrl).toEqual(registrationFormPageUrl);
 });
 

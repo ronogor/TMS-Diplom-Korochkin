@@ -1,10 +1,9 @@
-import { Given, When, Then } from '@wdio/cucumber-framework';
-import { expect } from '@wdio/globals';
-import MainPage from '../pageObjects/main.page';
-import { mainPageUrl } from '../data/urls';
-import LoginPage from '../pageObjects/login.page';
-import { RegistredUser, loginCaptchaTitle } from '../data/constants';
-
+import { Given, When, Then } from "@wdio/cucumber-framework";
+import { expect } from "@wdio/globals";
+import MainPage from "../pageObjects/main.page";
+import { mainPageUrl } from "../data/urls";
+import LoginPage from "../pageObjects/login.page";
+import { RegistredUser, loginCaptchaTitle } from "../data/constants";
 
 Given(/I am on the main page/, async () => {
     await MainPage.open();
@@ -23,7 +22,7 @@ Then(/I will be on the log in page/, async () => {
 
 When(/I am filling in the field "Ник или e-mail" and "Пароль"/, async () => {
     await LoginPage.fillLoginField(RegistredUser.LOGIN);
-    await LoginPage.fillPasswordField(RegistredUser.PASSWORD);  
+    await LoginPage.fillPasswordField(RegistredUser.PASSWORD);
 });
 
 When(/Press the button "Войти"/, async () => {

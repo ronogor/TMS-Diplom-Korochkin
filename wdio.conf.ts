@@ -1,19 +1,19 @@
-import type { Options } from '@wdio/types'
+import type { Options } from "@wdio/types";
 export const config: Options.Testrunner = {
     //
     // ====================
     // Runner Configuration
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
-    runner: 'local',
+    runner: "local",
     autoCompileOpts: {
         autoCompile: true,
         tsNodeOpts: {
-            project: './tsconfig.json',
-            transpileOnly: true
-        }
+            project: "./tsconfig.json",
+            transpileOnly: true,
+        },
     },
-    
+
     //
     // ==================
     // Specify Test Files
@@ -29,9 +29,7 @@ export const config: Options.Testrunner = {
     // The path of the spec files will be resolved relative from the directory of
     // of the config file unless it's absolute.
     //
-    specs: [
-        './features/**/*.feature'
-    ],
+    specs: ["./features/**/*.feature"],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -58,9 +56,11 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        browserName: 'chrome'
-    }],
+    capabilities: [
+        {
+            browserName: "chrome",
+        },
+    ],
 
     //
     // ===================
@@ -69,7 +69,7 @@ export const config: Options.Testrunner = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'trace',
+    logLevel: "trace",
     //
     // Set specific log levels per logger
     // loggers:
@@ -117,8 +117,8 @@ export const config: Options.Testrunner = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'cucumber',
-    
+    framework: "cucumber",
+
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -132,16 +132,21 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: [['allure', {
-        outputDir: 'allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: false,
-    }]],
+    reporters: [
+        [
+            "allure",
+            {
+                outputDir: "allure-results",
+                disableWebdriverStepsReporting: true,
+                disableWebdriverScreenshotsReporting: false,
+            },
+        ],
+    ],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./step-definitions/*.steps.ts'],
+        require: ["./step-definitions/*.steps.ts"],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -159,13 +164,12 @@ export const config: Options.Testrunner = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tags:'@Comparison',
+        tags: "",
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: false,
     },
-
 
     //
     // =====
@@ -289,11 +293,10 @@ export const config: Options.Testrunner = {
     afterFeature: function () {
         // take a screenshot anytime a test fails and throws an error
         try {
-            
         } catch (error) {
             browser.takeScreenshot();
         }
-        },
+    },
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name
@@ -331,22 +334,22 @@ export const config: Options.Testrunner = {
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {string} oldSessionId session ID of the old session
+     * @param {string} newSessionId session ID of the new session
+     */
     // onReload: function(oldSessionId, newSessionId) {
     // }
     /**
-    * Hook that gets executed before a WebdriverIO assertion happens.
-    * @param {object} params information about the assertion to be executed
-    */
+     * Hook that gets executed before a WebdriverIO assertion happens.
+     * @param {object} params information about the assertion to be executed
+     */
     // beforeAssertion: function(params) {
     // }
     /**
-    * Hook that gets executed after a WebdriverIO assertion happened.
-    * @param {object} params information about the assertion that was executed, including its results
-    */
+     * Hook that gets executed after a WebdriverIO assertion happened.
+     * @param {object} params information about the assertion that was executed, including its results
+     */
     // afterAssertion: function(params) {
     // }
-}
+};

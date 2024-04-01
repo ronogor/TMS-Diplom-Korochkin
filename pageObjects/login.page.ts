@@ -1,9 +1,7 @@
-import { $ } from '@wdio/globals'
-import BasePage from './base.page';
-import { mainPageUrl } from '../data/urls';
-import { loginPageTitle } from '../data/constants';
-
-
+import { $ } from "@wdio/globals";
+import BasePage from "./base.page";
+import { mainPageUrl } from "../data/urls";
+import { loginPageTitle } from "../data/constants";
 
 class LoginPage extends BasePage {
     private get loginFormTitleLocator() {
@@ -22,9 +20,10 @@ class LoginPage extends BasePage {
         return $("//div[contains(@class,'auth-form__title_condensed-other')]");
     }
     private get registrationFormLocator() {
-        return $("//a[contains(@class,'auth-form__link_primary') and contains(text(),'Зарегистрироваться на Onlíner')]");
+        return $(
+            "//a[contains(@class,'auth-form__link_primary') and contains(text(),'Зарегистрироваться на Onlíner')]",
+        );
     }
-
 
     async checkTitleLoginPage() {
         const titleText: string = await this.loginFormTitleLocator.getText();

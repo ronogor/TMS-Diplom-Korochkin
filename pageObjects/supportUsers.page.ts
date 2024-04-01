@@ -1,7 +1,7 @@
 import { supportUsersPageUrl } from "../data/urls";
 import BasePage from "./base.page";
 
-class SupportPage extends BasePage{
+class SupportPage extends BasePage {
     private get nameFieldInput() {
         return $("//input[contains(@id,'id_name')]");
     }
@@ -30,7 +30,6 @@ class SupportPage extends BasePage{
         return $("//input[contains(@type,'image') and contains(@alt,'Добавить')]");
     }
 
-
     async filleNameField(name: string) {
         await this.nameFieldInput.waitForDisplayed();
         await this.nameFieldInput.setValue(name);
@@ -58,7 +57,7 @@ class SupportPage extends BasePage{
 
         expect(fidelityEnteredEmail).toContain(validOrErrorMessage);
     }
-    
+
     async checkSubjectOfAppealOptionMoreThenOne() {
         const quantityOption: number = await this.subjectOfAppealSelectOptionLocator.length;
 

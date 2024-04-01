@@ -1,7 +1,6 @@
 import { catalogPageUrl } from "../data/urls";
 import BasePage from "./base.page";
 
-
 class ProductPage extends BasePage {
     private get productTitleLocator() {
         return $("//h1[contains(@class,'catalog-masthead__title')]");
@@ -24,7 +23,7 @@ class ProductPage extends BasePage {
     private get addedToCartButton() {
         return $("(//a[contains(text(),'В корзине')])[2]");
     }
-    private get counterProductInCartLocator () {
+    private get counterProductInCartLocator() {
         return $("//span[contains(@class,'b-top-profile__counter') and contains(text(),1)]");
     }
     private get cartIconLocator() {
@@ -40,7 +39,6 @@ class ProductPage extends BasePage {
         /span[contains(text(),'')]`);
     }
 
-
     async getProductTitleText(): Promise<string> {
         return (await this.productTitleLocator.getText()).trim();
     }
@@ -55,12 +53,11 @@ class ProductPage extends BasePage {
 
     async selectASort(atributeValue: string) {
         await this.sortingFilterSelectLocator.waitForDisplayed();
-        await this.sortingFilterSelectLocator.selectByAttribute("value", atributeValue); 
-
+        await this.sortingFilterSelectLocator.selectByAttribute("value", atributeValue);
     }
 
     async getPriceMoreBenefitialProduct() {
-        return (await this.priceFirstProductLocator.getText()).trim().replace(/[^0-9]/g,"");
+        return (await this.priceFirstProductLocator.getText()).trim().replace(/[^0-9]/g, "");
     }
 
     async addToCart() {
@@ -73,7 +70,7 @@ class ProductPage extends BasePage {
     }
 
     async getQuantityProductInCart(): Promise<number> {
-        return +((await this.counterProductInCartLocator.getText()).trim());
+        return +(await this.counterProductInCartLocator.getText()).trim();
     }
 
     async openCart() {
@@ -85,7 +82,7 @@ class ProductPage extends BasePage {
     }
 
     async checkComparsionButtonText(quantityProduct: string) {
-        let buttontext: string = (await this.comparsionButton[0].getText()).trim().replace(/[^0-9]/g,"");
+        let buttontext: string = (await this.comparsionButton[0].getText()).trim().replace(/[^0-9]/g, "");
 
         expect(+buttontext).toBe(+quantityProduct);
     }
