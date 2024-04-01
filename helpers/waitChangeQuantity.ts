@@ -1,3 +1,5 @@
+import { expect } from "@wdio/globals";
+
 export async function waitChengeQuantityOnWebElement(
     resultAsyncFunction: number,
     quantityBeforeChangeWebElement: number,
