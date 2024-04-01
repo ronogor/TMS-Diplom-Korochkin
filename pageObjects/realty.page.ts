@@ -104,7 +104,7 @@ class RealtyPage extends BasePage {
             let priceInUsd: number = +(await value.getText()).trim();
 
             expect((previousPrice)).toBeGreaterThanOrEqual(priceInUsd);
-            await browser.pause(1500)
+            await browser.pause(1500);
             previousPrice = priceInUsd;
         }) 
     }

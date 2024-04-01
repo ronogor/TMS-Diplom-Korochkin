@@ -21,7 +21,7 @@ export const partOfTitleSellersOffers: string = "Цены на";
 
 export const partOfMessageAboutDeleteProductFromCart: string = "Вы удалили";
 
-export const textForCheckCurrensyField: string = "dsaasddasioiouoiusd";
+export const randomTextString: string = "dsaasddasioiouoiusd";
 
 export const roomOnRealtCatalogPage: string = "Комната";
 

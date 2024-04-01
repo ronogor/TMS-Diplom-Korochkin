@@ -135,7 +135,7 @@ export const config: Options.Testrunner = {
     reporters: [['allure', {
         outputDir: 'allure-results',
         disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
     }]],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
@@ -286,9 +286,14 @@ export const config: Options.Testrunner = {
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // afterFeature: function (uri, feature) {
-    // },
-    
+    afterFeature: function () {
+        // take a screenshot anytime a test fails and throws an error
+        try {
+            
+        } catch (error) {
+            browser.takeScreenshot();
+        }
+        },
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name

@@ -93,7 +93,7 @@ Then(/A page has been opened showing 4 payment methods: "Картой онлай
     await DecorationOrderPage.checkMethodPaymentName(methodPayment.HALVA);
 });
 
-Then(/"Картой онлайн" is selected by default. The "Go to order confirmation" button is displayed/, async () => {
+Then(/"При получении" is selected by default. The "Go to order confirmation" button is displayed/, async () => {
     await DecorationOrderPage.checkActivePaymentMethod();
     await DecorationOrderPage.checkaddCardButtonIsActive();
 });
@@ -115,4 +115,4 @@ Then(/I see message about deleted product/, async () => {
 
 When(/I press delete address/, async () => {
     await DecorationOrderPage.killAddress();
-})
+});

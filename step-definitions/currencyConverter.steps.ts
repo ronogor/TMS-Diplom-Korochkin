@@ -4,7 +4,7 @@ import { expect } from '@wdio/globals';
 import ConverterPage from '../pageObjects/converter.page';
 import { converterPageUrl } from '../data/urls';
 import { currentDayAndMonth } from '../helpers/date';
-import { textForCheckCurrensyField } from '../data/constants';
+import { randomTextString } from '../data/constants';
 import randomNumber from '../helpers/randomNumber';
 
 
@@ -29,7 +29,7 @@ When(/I will click the "Купить" button in the converter/, async () => {
 });
 
 When(/Try to enter text in the converter field/, async () => {
-    await ConverterPage.fillCyrrencyField(textForCheckCurrensyField);
+    await ConverterPage.fillCyrrencyField(randomTextString);
 });
 
 Then(/I see the value of the field has not changed, the standard "(.*)" is displayed/, async (standartValueField: string) => {

@@ -23,6 +23,9 @@ class MainPage extends BasePage {
         /ancestor::div[contains(@class,'b-main-navigation__dropdown-column')]
         /descendant::span[contains(@class,'b-main-navigation__dropdown-advert-sign') and contains(text(),'Минск')]`);
     }
+    private get supportUsersLinkLocator() {
+        return $("//a[contains(@class,'footer-style__link_primary') and contains(text(),'Поддержка пользователей')]");
+    }
 
 
     async openLoginPage() {
@@ -47,6 +50,10 @@ class MainPage extends BasePage {
         await this.houseAndFlatsDropdownLocator.moveTo();
         await this.realtyRentMinskPageLinkLocator.waitForDisplayed();
         await this.realtyRentMinskPageLinkLocator.click();
+    }
+
+    async openSupprtUsersSection() {
+        await this.supportUsersLinkLocator.click();
     }
 }
 

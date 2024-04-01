@@ -24,7 +24,7 @@ Scenario Outline: I can making an order (before payment)
     When I fill in the address fields, the contact information fields
     When I press the button "Перейти к способу оплаты"
     Then A page has been opened showing 4 payment methods: "Картой онлайн", "Халва онлайн, "При получении", "Minipay"
-        And "Картой онлайн" is selected by default. The "Go to order confirmation" button is displayed
+        And "При получении" is selected by default. The "Go to order confirmation" button is displayed
     
     Given I am on cart page
     When I will press the button "Перейти к оформлению" 
