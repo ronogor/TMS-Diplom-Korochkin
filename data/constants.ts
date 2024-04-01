@@ -66,3 +66,8 @@ export enum FiltersOnRealtyPage {
     TWO_ROOMS = "2",
     FLAT = "Квартира",
 }
+
+export enum NumberOfProduct {
+    FIRST = "1",
+    SECOND = "2"
+}

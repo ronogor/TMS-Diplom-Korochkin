@@ -30,6 +30,15 @@ class ProductPage extends BasePage {
     private get cartIconLocator() {
         return $("//a[contains(@class,'b-top-profile__cart')]");
     }
+    private get checkboxAddToComparsionLocator() {
+        return $(`//span[contains(@class,'catalog-masthead-controls__text') and contains(text(),'Добавить к сравнению')]
+        /preceding-sibling::span[contains(@class,'i-checkbox_yellow')]`);
+    }
+    private get comparsionButton() {
+        return $$(`//div[contains(@class,'compare-button__state_initial')]
+        /a[contains(@class,'compare-button__sub_main')]
+        /span[contains(text(),'')]`);
+    }
 
 
     async getProductTitleText(): Promise<string> {
@@ -69,6 +78,20 @@ class ProductPage extends BasePage {
 
     async openCart() {
         await this.cartIconLocator.click();
+    }
+
+    async enablecheckboxAddToComparsion() {
+        await this.checkboxAddToComparsionLocator.click();
+    }
+
+    async checkComparsionButtonText(quantityProduct: string) {
+        let buttontext: string = (await this.comparsionButton[0].getText()).trim().replace(/[^0-9]/g,"");
+
+        expect(+buttontext).toBe(+quantityProduct);
+    }
+
+    async openComparsionPage() {
+        await this.comparsionButton[0].click();
     }
 }
 

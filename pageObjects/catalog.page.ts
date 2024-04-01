@@ -30,6 +30,17 @@ class CatalogPage extends BasePage {
     private get elementsWithHotPrice() {
         return $$("//div[contains(@class,'catalog-form__offers-flex')]//div[contains(@class,'catalog-form__popover-trigger_hot-secondary')]");
     }
+    private get tvLinkLocator() {
+        return $("//div[contains(@class,'catalog-form__description_primary') and contains(text(),'Телевизоры')]");
+    }
+    private get catalogItemLinkLocator() {
+        return $$(`//div[contains(@class,'catalog-form__offers-part_data')]
+        //div[contains(@class,'catalog-form__description_primary')]
+        //a[contains(@class,'catalog-form__link')]`);
+    };
+    private get comparsionPageTitleProductLocator() {
+        return $$("//span[contains(@class,'product-summary__caption')]");
+    }
 
     private getManufacturerCheckboxLocator(manufactorer: string) {
         return $(`//div[contains(@class,'catalog-form__checkbox-sign') and contains(text(),'{0}')]
@@ -41,14 +52,17 @@ class CatalogPage extends BasePage {
 
 
     async openSectionComputersAndNetworks() {
+        await this.computerAndNetworksSectionLocator.waitForClickable();
         await this.computerAndNetworksSectionLocator.click();
     }
 
     async openCompsLaptopsScreensSection() {
+        await this.compLaptopsScreensSectionLocator.waitForClickable();
         await this.compLaptopsScreensSectionLocator.click();
     }
 
     async openLaptopsSection() {
+        await this.laptopsSectionLocator.waitForClickable();
         await this.laptopsSectionLocator.click();
     }
 
@@ -99,6 +113,22 @@ class CatalogPage extends BasePage {
                 break;
             }
         }
+    }
+
+    async openTVSection() {
+        (await this.tvLinkLocator).click();
+    }
+
+    async openProductPage(numberProductOnCatalogPage: string) {
+        await this.catalogItemLinkLocator[+numberProductOnCatalogPage - 1].click();
+    }
+
+    async getSelectedProductTitle(numberProductOnCatalogPage: string): Promise<string> {
+        return (await this.catalogItemLinkLocator[+numberProductOnCatalogPage - 1].getText()).trim(); 
+    }
+
+    async getTitleTextOnComparsionPage(productNumber): Promise<string> {
+        return (await this.comparsionPageTitleProductLocator[+productNumber - 1].getText()).trim();
     }
 }
 
